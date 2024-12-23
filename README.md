@@ -26,18 +26,15 @@ Once everything is set up, I’ll start the challenges!
 
 - Locate a file with specific permissions
 
-- Find a process running on a specific port (you need to install the tools like netstat)
 
 
-- Decode a base64 encoded message
-
-## 1. Find a hidden file
+### 1. Find a hidden file
 
 Use the `ls -a` command. This command lists all files in a directory, including hidden ones. Hidden files typically start with a period (`.`), such as `.git`.
 
 ![finding hidden files](https://github.com/user-attachments/assets/1b03dc83-6781-4daf-ad3f-f2ad435116d6)
 
-## 2. Locate a file with "secret" in its name
+### 2. Locate a file with "secret" in its name
 
  Use the `find ./ -name "*secret*"` command. The `*` is a wildcard, meaning it will search for any file with "secret" in its name, anywhere in the directory.
 
@@ -45,5 +42,50 @@ Use the `ls -a` command. This command lists all files in a directory, including 
 
 
 ## 3. Find the largest file in a specific directory
+
+Use the `du -ah ./ | sort -rh | head -n 1` command.
+
+![Screenshot 2024-12-23 194457](https://github.com/user-attachments/assets/cf311cf0-a7e1-48ca-a46a-964143317086)
+
+### 4. Identify a user with a specific UID
+For this challenge, I need to find the user ID (UID) first. To do this, I use the command:  
+
+```bash
+cat /etc/passwd
+```  
+
+This command displays a list of all users on the system. Scroll through the output to find the user and their UID.  
+
+Once you have the UID, use the following command to find the user details:  
+
+```bash
+grep ":<UID>:" /etc/passwd
+```  
+
+Replace `<UID>` with the actual user ID you found.
+
+### 5. Locate a file with specific permissions
+Use the `find` command 
+But first: use the command `ls -l` to find the file permission
+
+![Screenshot 2024-12-23 202658](https://github.com/user-attachments/assets/8be7a218-7e2f-46a8-9080-606b455d1481)
+
+To find a file with specific permissions, type:  
+```bash
+find ./ -type f -name "very_secret_file.txt" -perm 644
+```  
+Change `"very_secret_file.txt"` to your file's name and `644` to the permissions you want. If the file is not in the current folder, add the correct path to where the file is.
+
+Output
+
+![Screenshot 2024-12-23 203256](https://github.com/user-attachments/assets/59518b62-2f5d-4d70-a613-82accbeff5d9)
+
+## Purpose
+
+I know these are just basic Linux commands, but for me this knowledge check, reading theory doesn’t work like that. I learn better by doing. 
+
+
+Thank You 4 reading 
+
 
 
